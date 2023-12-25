@@ -1,0 +1,69 @@
+.dimAreaUpper {
+  top: 0px;
+}
+.dimAreaLeft {
+  left: 0px;
+}
+.dimAreaUndder {
+  bottom: 0px;
+}
+.dimAreaRight {
+  right: 0px;
+}
+
+.dimAreaDefault {
+  width: 100vw;
+  height: 100vh;
+}
+
+.dimAreaVertical {
+  width: 100vw;
+  height: 0vh;
+}
+
+.dimAreaVerticalAction {
+  height: 100vh;
+}
+
+.dimAreaHorizontal {
+  width: 0vw;
+  height: 100vh;
+}
+
+.dimAreaHorizontalAction {
+  width: 100vw;
+}
+
+.dimArea {
+  position: fixed;
+  background-color: rgba(44, 44, 44, 0.5);
+  /*100 이상은 dim 영역*/
+  z-index: 150;
+  display: none;
+  backdrop-filter: none;
+}
+
+.transitionActive {
+  transition-property: width, height;
+  transition-delay: 0s;
+  transition-duration: 3s;
+  transition-timing-function: ease;
+}
+
+.dimAreaActive {
+  display: block;
+  backdrop-filter: blur(3px);
+}
+
+.popup {
+  position: absolute;
+  top: 100vh;
+  left: 15vw;
+  width: 70vw;
+  background-color: #f3eeee;
+  border-radius: 10px;
+  transition: all 0.4s ease-in;
+}
+.slidePopup {
+  top: 15vh;
+}
