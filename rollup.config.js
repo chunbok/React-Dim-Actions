@@ -4,8 +4,6 @@ import typescript from "@rollup/plugin-typescript";
 import { dts } from "rollup-plugin-dts";
 import { uglify } from "rollup-plugin-uglify";
 
-const extensions = [".js", ".jsx", ".ts", "tsx"];
-
 const targets = [
   { src: "package.json", dest: "dist" },
   {
@@ -25,14 +23,7 @@ export default [
     plugins: [
       uglify(),
       typescript(),
-      babel({
-        presets: [
-          "@babel/preset-typescript",
-          "@babel/preset-env",
-          ["@babel/preset-react", { runtime: "automatic" }],
-        ],
-        extensions: extensions,
-      }),
+      babel({ babelrc: true, babelHelpers: "bundled" }),
     ],
   },
   {

@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     jest: true,
+    node: true,
   },
   extends: [
     "eslint:recommended",
@@ -22,7 +23,7 @@ module.exports = {
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: "^16.8.0",
     sourceType: "module",
   },
   plugins: ["@typescript-eslint", "react"],
