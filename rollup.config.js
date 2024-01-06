@@ -22,8 +22,8 @@ export default [
     },
     plugins: [
       uglify(),
-      typescript(),
-      babel({ babelrc: true, babelHelpers: "bundled" }),
+      typescript({ exclude: ["**/test", "**/jest.config.ts"] }),
+      babel({ babelrc: true }),
     ],
   },
   {
