@@ -1,45 +1,29 @@
 import React from "react";
+import { AreaInfo } from "../../types";
 
-export interface DimAreaParam {
-  dim: Dim;
+interface DimAreaInfo extends AreaInfo {
+  children: React.ReactNode;
 }
 
-export type spreadDirection = "left" | "right" | "top" | "bottom";
-
-export interface Spread {
-  direction?: spreadDirection;
-  delay?: number;
-  duration?: number;
-}
-
-export interface Dim {
-  active: boolean;
-  clearAction?: () => void;
-  immediateClear?: boolean;
-  spread?: Spread;
-  zIndex?: number;
-}
-
-export const DimArea: React.FunctionComponent<DimAreaParam> = (
-  DimAreaParam
-): JSX.Element => {
-  const { dim } = DimAreaParam;
-
+export const DimArea: React.FunctionComponent<DimAreaInfo> = ({
+  children,
+  ...info
+}): JSX.Element => {
   // css reactive functions
   const checkDisplay = () => {
     // 방향이 지정되어 있으면 제원으로만 통제
-    if (dim.spread?.direction) {
+    if (info.spread?.direction) {
       return "block";
     }
-    if (dim.active) {
+    if (info.active) {
       return "block";
     } else {
       return "none";
     }
   };
   const checkWidth = () => {
-    if (dim.active) {
-      switch (dim.spread?.direction) {
+    if (info.active) {
+      switch (info.spread?.direction) {
         case "left":
         case "right":
         case "top":
@@ -49,7 +33,7 @@ export const DimArea: React.FunctionComponent<DimAreaParam> = (
           return "100vw";
       }
     } else {
-      switch (dim.spread?.direction) {
+      switch (info.spread?.direction) {
         case "left":
         case "right":
           return "0vw";
@@ -63,8 +47,8 @@ export const DimArea: React.FunctionComponent<DimAreaParam> = (
   };
 
   const checkHeight = () => {
-    if (dim.active) {
-      switch (dim.spread?.direction) {
+    if (info.active) {
+      switch (info.spread?.direction) {
         case "left":
         case "right":
         case "top":
@@ -74,7 +58,7 @@ export const DimArea: React.FunctionComponent<DimAreaParam> = (
           return "100vh";
       }
     } else {
-      switch (dim.spread?.direction) {
+      switch (info.spread?.direction) {
         case "left":
         case "right":
           return "100vh";
@@ -88,7 +72,7 @@ export const DimArea: React.FunctionComponent<DimAreaParam> = (
   };
 
   const checkVerticalDirection = () => {
-    switch (dim.spread?.direction) {
+    switch (info.spread?.direction) {
       case "left":
       case "top":
       case "bottom":
@@ -100,7 +84,7 @@ export const DimArea: React.FunctionComponent<DimAreaParam> = (
     }
   };
   const checkHorizontalDirection = () => {
-    switch (dim.spread?.direction) {
+    switch (info.spread?.direction) {
       case "left":
       case "top":
       case "right":
@@ -118,12 +102,12 @@ export const DimArea: React.FunctionComponent<DimAreaParam> = (
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function handleTouchMove(event: any) {
-      if (dim.active) {
+      if (info.active) {
         event.preventDefault();
       }
     }
 
-    if (dim.active) {
+    if (info.active) {
       document.body.style.overflow = "hidden";
       //scroll fix to backgroupd
       const htmlBody = document.querySelector("html");
@@ -141,18 +125,18 @@ export const DimArea: React.FunctionComponent<DimAreaParam> = (
     return () => {
       window.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [dim.active]);
+  }, [info.active]);
 
   return (
     <div
       id="dimArea"
       onClick={() => {
-        dim.clearAction && dim.clearAction();
+        info.clearAction && info.clearAction();
       }}
       style={{
         position: "fixed",
         backgroundColor: "rgba(44, 44, 44, 0.5)",
-        zIndex: dim.zIndex ?? 150,
+        zIndex: info.zIndex ?? 150,
         display: checkDisplay(),
         width: checkWidth(),
         height: checkHeight(),
@@ -161,13 +145,15 @@ export const DimArea: React.FunctionComponent<DimAreaParam> = (
         backdropFilter: "none",
         transitionProperty: "width, height",
         transitionDelay: `${
-          !dim.active && dim.immediateClear ? 0 : dim.spread?.delay ?? 0
+          !info.active && info.immediateClear ? 0 : info.spread?.delay ?? 0
         }s`,
         transitionDuration: `${
-          !dim.active && dim.immediateClear ? 0 : dim.spread?.duration ?? 3
+          !info.active && info.immediateClear ? 0 : info.spread?.duration ?? 3
         }s`,
         transitionTimingFunction: "ease",
       }}
-    ></div>
+    >
+      {children}
+    </div>
   );
 };
