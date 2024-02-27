@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { AreaInfo } from "../../types";
 
 interface DimAreaInfo extends AreaInfo {
@@ -9,6 +9,7 @@ export const DimArea: React.FunctionComponent<DimAreaInfo> = ({
   children,
   ...info
 }): JSX.Element => {
+  const overflowStyle = useRef("none");
   // css reactive functions
   const checkDisplay = () => {
     // 방향이 지정되어 있으면 제원으로만 통제
@@ -108,6 +109,7 @@ export const DimArea: React.FunctionComponent<DimAreaInfo> = ({
     }
 
     if (info.active) {
+      overflowStyle.current = document.body.style.overflow;
       document.body.style.overflow = "hidden";
       //scroll fix to backgroupd
       const htmlBody = document.querySelector("html");
@@ -116,7 +118,7 @@ export const DimArea: React.FunctionComponent<DimAreaInfo> = ({
       }
       htmlBody.scrollTop = window.scrollY;
     } else {
-      document.body.style.overflow = "scroll";
+      document.body.style.overflow = overflowStyle.current;
     }
     // in mobile touch event prevent
     window.addEventListener("touchmove", handleTouchMove, {
