@@ -15,7 +15,7 @@ jobs:
       - uses: CultureHQ/actions-yarn@v1.0.1
         with:
           node-version: 16
-      - run : yarn install
+      - run: yarn install
       - run: yarn test
       - run: yarn build
 
@@ -28,7 +28,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run : echo ${{secrets.publish.PUBLISH_TOKEN}}
+      - run: echo ${{secrets.publish.PUBLISH_TOKEN}}
+      - run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.publish.PUBLISH_TOKEN}}
