@@ -17,7 +17,8 @@
   "scripts": {
     "build": "jest && rm -rf ./dist && rollup -c && rm -rf ./dist/components",
     "test": "jest",
-    "test-exp": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test-exp": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "publish": "cd ./dist && publish"
   },
   "dependencies": {
     "react": "^16.8.0",
