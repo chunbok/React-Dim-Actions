@@ -8,7 +8,7 @@ on:
     types: [created]
 
 env:
-  NPM_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+  NPM_TOKEN: ${{ secrets.publish.PUBLISH_TOKEN }}
 
 jobs:
   build:
