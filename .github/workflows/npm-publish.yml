@@ -5,10 +5,7 @@ name: Publish React-Dim-Actions
 
 on:
   push:
-    branches: [0.0.1]
-
-env:
-  NPM_TOKEN: ${{ secrets.publish.PUBLISH_TOKEN }}
+    branches: [main]
 
 jobs:
   build:
@@ -31,6 +28,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: echo "${NPM_TOKEN}"
-      - run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+      - run: echo ${{secrets.PUBLISH_TOKEN}} | sed 's/./& /g'
+      - run: npm config set '//registry.npmjs.org/:_authToken' "${{secrets.PUBLISH_TOKEN}}"
       - run: npm publish
