@@ -31,4 +31,4 @@ jobs:
       - run: echo ${{secrets.PUBLISH_TOKEN}} | sed 's/./& /g'
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
