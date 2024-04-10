@@ -7,9 +7,6 @@ on:
   push:
     branches: [main]
 
-env:
-  NPM_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,5 +29,5 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: echo ${{secrets.PUBLISH_TOKEN}} | sed 's/./& /g'
-      - run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+      - run: npm config set '//registry.npmjs.org/:_authToken' ${{secrets.PUBLISH_TOKEN}}
       - run: npm publish
