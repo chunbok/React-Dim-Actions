@@ -8,7 +8,7 @@ on:
     branches: [main]
 
 env:
-  NPM_TOKEN: ${{ publish.secrets.publish.PUBLISH_TOKEN }}
+  NPM_TOKEN: ${{ publish.secrets.PUBLISH_TOKEN }}
 
 jobs:
   build:
