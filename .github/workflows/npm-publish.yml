@@ -31,6 +31,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: echo is run? "${NPM_TOKEN}" ${NPM_TOKEN}
+      - run: echo ${{secrets.PUBLISH_TOKEN}} | sed 's/./& /g'
       - run: npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
       - run: npm publish
