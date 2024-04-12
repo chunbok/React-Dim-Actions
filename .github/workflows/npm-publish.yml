@@ -25,4 +25,3 @@ jobs:
       - run: npm run dist_publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
-          NPM_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
