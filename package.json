@@ -1,6 +1,6 @@
 {
   "name": "react-dim-actions",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "react dim area with action",
   "main": "index.js",
   "types": "index.d.ts",
@@ -17,7 +17,8 @@
   "scripts": {
     "build": "jest && rm -rf ./dist && rollup -c && rm -rf ./dist/components",
     "test": "jest",
-    "test-exp": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test-exp": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "dist_publish": "cd ./dist && npm publish"
   },
   "dependencies": {
     "react": "^16.8.0",
