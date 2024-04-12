@@ -1,6 +1,6 @@
 {
   "name": "react-dim-actions",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react dim area with action",
   "main": "index.js",
   "types": "index.d.ts",
@@ -11,7 +11,8 @@
     "index.d.ts",
     "index.js.map",
     "styles/",
-    "package.json"
+    "package.json",
+    "README.md"
   ],
   "license": "MIT",
   "scripts": {
