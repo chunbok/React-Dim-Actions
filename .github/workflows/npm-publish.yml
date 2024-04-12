@@ -27,6 +27,6 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: echo ${{secrets.PUBLISH_TOKEN}} | sed 's/./& /g'
-      - run: npm dist_publish
+      - run: npm run dist_publish
         env:
           NPM_AUTH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
