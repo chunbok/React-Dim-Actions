@@ -8,18 +8,7 @@ on:
     types: [published, edited]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: CultureHQ/actions-yarn@v1.0.1
-        with:
-          node-version: 16
-      - run: yarn install
-      - run: yarn build
-
-  publish-npm:
-    needs: build
+  buid-and-publish-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,6 +16,11 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - uses: CultureHQ/actions-yarn@v1.0.1
+        with:
+          node-version: 16
+      - run: yarn install
+      - run: yarn build
       - run: echo ${{secrets.PUBLISH_TOKEN}} | sed 's/./& /g'
       - run: npm run dist_publish
         env:
