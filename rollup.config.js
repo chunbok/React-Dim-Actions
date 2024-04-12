@@ -10,6 +10,7 @@ const targets = [
     src: "public/styles/DimmedComponents.css",
     dest: "dist/styles",
   },
+  { src: "README.md", dest: "dist" },
 ];
 
 export default [

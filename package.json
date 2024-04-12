@@ -11,7 +11,8 @@
     "index.d.ts",
     "index.js.map",
     "styles/",
-    "package.json"
+    "package.json",
+    "README.md"
   ],
   "license": "MIT",
   "scripts": {
