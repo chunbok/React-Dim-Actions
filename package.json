@@ -1,6 +1,10 @@
 {
   "name": "react-dim-actions",
-  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chunbok/React-Dim-Actions.git"
+  },
+  "version": "0.0.4",
   "description": "react dim area with action",
   "main": "index.js",
   "types": "index.d.ts",
