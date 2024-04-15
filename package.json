@@ -1,6 +1,6 @@
 {
   "name": "react-dim-actions",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "react dim area with action",
   "main": "index.js",
   "types": "index.d.ts",
